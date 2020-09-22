@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom';
 import '@progress/kendo-theme-material/dist/all.css';
 import DrawerRouterContainer from './components/DrawerRouterContainer/DrawerRouterContainer.jsx'
 import Dashboard from './components/Dashboard/Dashboard.jsx';
@@ -113,40 +113,55 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {this.state.login ?
-          <HashRouter>
-            <DrawerRouterContainer handleLogout={this.handleLogout}>
-              <Switch>
-                <Route exact={true} path="/" component={() =>
-                  <Dashboard
-                    savePlans={this.props.savePlans}
-                    saveTasks={this.props.saveTasks}
-                    tasks={this.props.tasks}
-                    plans={this.props.plans}
-                    user={this.props.users[0].username} />}
-                />
-                <Route exact={true} path="/customer" component={() =>
-                  <CustomerList
-                    saveCustomers={this.props.saveCustomers}
-                    customers={this.props.customers}
-                    user={this.props.users[0].username} />}
-                />
-                <Route exact={true} path="/add" component={() =>
-                  <Customer
-                    saveCustomers={this.props.saveCustomers}
-                    customers={this.props.customers}
-                    user={this.props.users[0].username}
-                    action={"add"} />}
-                />
-              </Switch>
-            </DrawerRouterContainer>
-          </HashRouter>
-          :
-          <Login
-            handleLogin={username => this.handleLogin(username)}
-            userinfo={this.props.users}
+        <Router>
+          <Route path="/login" component={(history) =>
+            <Login
+              handleLogin={username => this.handleLogin(username)}
+              userinfo={this.props.users}
+              {...history}
+            />} />
+          <Route path="/dashboard" render={() => {
+            return (
+              <div>
+                <h2>front menu</h2>
+                <Link to="/customer">help</Link>
+                <Link to="/add-customer">about</Link>
+              </div>
+            );
+          }} />
+          {/* <DrawerRouterContainer
+            handleLogout={this.handleLogout}
+          > */}
+          <Route exact={true} path="/dashboard"
+            component={(history) =>
+              <Dashboard
+                savePlans={this.props.savePlans}
+                saveTasks={this.props.saveTasks}
+                tasks={this.props.tasks}
+                plans={this.props.plans}
+                user={this.props.users[0].username}
+                {...history} />}
           />
-        }
+          <Route exact={true} path="/customer"
+            component={(history) =>
+              <CustomerList
+                saveCustomers={this.props.saveCustomers}
+                customers={this.props.customers}
+                user={this.props.users[0].username}
+                {...history} />}
+          />
+          <Route exact={true} path={`/add-customer`} component={(history) =>
+            <Customer
+              saveCustomers={this.props.saveCustomers}
+              customers={this.props.customers}
+              user={this.props.users[0].username}
+              action={"add"}
+              {...history} />}
+          />
+          {/* </DrawerRouterContainer> */}
+
+
+        </Router>
       </div>
     );
   }

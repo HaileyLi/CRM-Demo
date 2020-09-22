@@ -9,11 +9,11 @@ import './DrawerRouterContainer.css';
 import logo from '../../img/logo.png'
 
 const items = [
-    { text: '我的任务面板', icon: 'k-i-delicious', selected: true, route: '/' },
+    { text: '我的任务面板', icon: 'k-i-delicious', selected: true, route: '/dashboard' },
 
     { text: '我的客户', icon: 'k-i-tell-a-friend', route: '/customer' },
     // { text: '我的时间表', icon: 'k-i-calendar', route: '/schedule' },
-    { text: '创建新客户', icon: 'k-i-plus', route: '/add' }
+    { text: '创建新客户', icon: 'k-i-plus', route: '/add-customer' }
 
 ];
 
@@ -28,6 +28,7 @@ class DrawerRouterContainer extends React.Component {
     }
 
     onSelect = (e) => {
+        console.log(e)
         this.setState({ selectedId: e.itemIndex, expanded: true });
         this.props.history.push(e.itemTarget.props.route);
     }
@@ -46,10 +47,10 @@ class DrawerRouterContainer extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         let selected = this.setSelectedItem(this.props.location.pathname);
         return (
             <div>
-
                 <Drawer
                     expanded={this.state.expanded}
                     items={items.map(

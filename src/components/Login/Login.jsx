@@ -33,6 +33,7 @@ class Login extends React.Component {
                 this.props.handleLogin(username)
             }
         }
+        this.props.history.push("/dashboard")
 
     }
     render() {
