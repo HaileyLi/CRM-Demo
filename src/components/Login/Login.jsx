@@ -1,10 +1,4 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { loginUser } from "../../store/authActions";
-import classnames from "classnames";
-
+import React from "react";
 import './Login.css';
 import { Input } from '@progress/kendo-react-inputs';
 import { Button } from '@progress/kendo-react-buttons';
@@ -12,38 +6,36 @@ import bg from '../../img/login-bg.jpeg'
 import logo_dark from '../../img/logo_dark.png'
 
 
-class Login extends Component {
-    constructor() {
-        super();
+class Login extends React.Component {
+    constructor(props) {
+        super(props);
         this.state = {
             username: "",
-            password: "",
-            errors: {}
-        };
-    }
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.auth.isAuthenticated) {
-            this.props.history.push("/dashboard"); // push user to dashboard when they login
-        }
-        if (nextProps.errors) {
-            this.setState({
-                errors: nextProps.errors
-            });
+            password: ""
         }
     }
-    onChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
-    };
-    onSubmit = e => {
-        e.preventDefault();
-        const userData = {
-            username: this.state.username,
-            password: this.state.password
-        };
-        this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
-    };
+    handleChange = (event) => {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        this.setState({
+            [name]: value
+        })
+    }
+    handleLogin = (username, password) => {
+        if (username === "" || password === "") {
+            alert("请输入用户名和密码")
+        } else {
+            var user = this.props.userinfo.filter(item => item.username === username)
+            if (user.length === 0) {
+                alert("用户名或密码错误")
+            } else if (user[0].password === password) {
+                this.props.handleLogin(username)
+            }
+        }
+
+    }
     render() {
-        const { errors } = this.state;
         return (
             <div className="login-container" style={{
                 background: `url(${bg}) no-repeat 0 0`, width: "100%", opacity: 1,
@@ -59,60 +51,31 @@ class Login extends Component {
                     }}>
 
                     </div>
-                    <form noValidate onSubmit={this.onSubmit}>
-                        <div className="login-input">
-                            <Input
-                                name="username"
-                                label="用户名"
-                                onChange={this.onChange}
-                                defaultValue={this.state.username}
-                                error={errors.username}
-                                type="username"
-                                className={classnames("", {
-                                    invalid: errors.username || errors.usernamenotfound
-                                })}
-                            />
-                            <span className="red-text">
-                                {errors.username}
-                                {errors.usernamenotfound}
-                            </span>
-                        </div>
-                        <div className="login-input">
-                            <Input
-                                name="password"
-                                label="密码"
-                                onChange={this.onChange}
-                                defaultValue={this.state.password}
-                                error={errors.password}
-                                type="password"
-                                className={classnames("", {
-                                    invalid: errors.password || errors.passwordincorrect
-                                })}
-                            />
-                            <span className="red-text">
-                                {errors.password}
-                                {errors.passwordincorrect}
-                            </span>
-                        </div>
+                    <div className="login-input">
+                        <Input
+                            name="username"
+                            label="用户名"
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                    <div className="login-input">
+                        <Input
+                            name="password"
+                            label="密码"
+                            onChange={this.handleChange}
+                        />
+                    </div>
 
-                        <Button primary={true} className="login-btn"
-                            type="submit">登录</Button>
-                    </form>
+                    <Button primary={true} className="login-btn"
+                        onClick={() => this.handleLogin(this.state.username, this.state.password)}>登录</Button>
                 </div>
             </div>
+
+
         );
     }
+
+
 }
-Login.propTypes = {
-    loginUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
-};
-const mapStateToProps = state => ({
-    auth: state.auth,
-    errors: state.errors
-});
-export default connect(
-    mapStateToProps,
-    { loginUser }
-)(Login);
+
+export default Login;

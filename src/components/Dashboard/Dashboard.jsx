@@ -12,8 +12,13 @@ class Dashboard extends React.Component {
         this.state = {
         }
     }
+    logout = () => {
+
+    }
+
     render() {
         return (
+
             < div className="dashboard-container" >
                 <div className="log-in">
                     <div className="top_banner" style={{
@@ -25,14 +30,17 @@ class Dashboard extends React.Component {
                     </div>
                 </div>
                 <div className="dashboard">
-                    {/* <Setting tasks={this.props.tasks} />
+                    <Setting tasks={this.props.tasks} />
                     <Tasks tasks={this.props.tasks} saveTasks={this.props.saveTasks} user={this.props.user} />
-                    <Plans plans={this.props.plans} savePlans={this.props.savePlans} user={this.props.user} /> */}
+                    <Plans plans={this.props.plans} savePlans={this.props.savePlans} user={this.props.user} />
                 </div>
             </div >
+
+
         );
     }
+
+
 }
 
-
-export default Dashboard
+export default Dashboard;
