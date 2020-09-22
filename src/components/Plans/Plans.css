@@ -1,0 +1,73 @@
+.container-fluid {
+    width: 100%;
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    height: 560px;
+
+    -webkit-box-shadow: 0 3px 10px 1px #ccc;
+    -moz-box-shadow: 0 3px 10px 1px #ccc;
+         box-shadow: 0 3px 10px 1px #ccc;
+}
+
+.plan-container {
+    width:553px;
+    display:flex;
+}
+.btn-container{
+    margin:10px;
+    text-align: center;
+}
+
+.k-button.k-outline.k-primary{
+    color:#ff4081;
+    margin-right:10px;
+}
+.general-container{
+    display:flex;
+    width: 100%;
+}
+.time-slot{
+    width:87px;
+    line-height: 29px;
+    font-size: 12px;
+}
+.add-plan span.k-textbox-container{
+    width:60%;
+    margin-right: 15px;
+}
+
+.delete-plan button.k-button {
+    margin-bottom: 6px;
+}
+
+.add-plan {
+    background: #c5cdff;
+    padding: 16px;
+    border-radius: 10px;
+    padding-top: 0;
+}
+.delete-plan{
+    width:80px;
+}
+.sortable_tags{
+    width: 316px;
+    line-height: 0.5;
+}
+.copy-clipboard .k-widget.k-window.k-dialog {
+    width: 70%;
+    min-height: 300px;
+}
+    
+.add-plan .k-button {
+    background: #3f50b5;
+    color: #fff;
+    width: 90px;
+}
+
+.add-plan .k-button:last-child {
+    background: #fff;
+    color: black;
+    width: 70px;
+    margin-left:15px;
+}

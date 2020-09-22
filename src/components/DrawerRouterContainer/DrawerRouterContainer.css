@@ -1,0 +1,73 @@
+.k-drawer-expanded .k-widget.k-drawer.k-drawer-start {
+    height: 100vh;
+    padding: 21px;
+    padding-top: 110px;
+}
+
+ .k-widget.k-drawer.k-drawer-start {
+    height: 100vh;
+    padding-top: 110px;
+}
+
+.k-drawer-expanded button.k-button.k-flat.k-button-icon {
+    position: absolute;
+    left: 187px;
+    top: 14px;
+    transition: all 200ms ease 0s;
+}
+button.k-button.k-flat.k-button-icon{
+    left: 6px;
+    top: 14px;
+    position: absolute;
+    transition: all 200ms ease 0s;
+
+    background: #3f51b5 !important;
+    color: white;
+    box-shadow: -3px 3px 8px #ccc !important;
+}
+
+button.k-button.k-flat.k-button-icon:hover{
+    background: white !important;
+    color: #3f51b5;
+    box-shadow: -3px 3px 8px #ccc !important;
+}
+
+li.k-state-selected {
+    background: #f5f5f5 !important;
+}
+
+li.k-drawer-item:last-child{
+    background:#3f51b5;
+    border-radius: 29px;
+    color: white;
+    margin-top:50vh;
+}
+
+li.k-drawer-item:last-child.k-state-selected{
+    border-radius: 29px;
+    color: #3f51b5;
+}
+.k-drawer-content {
+    padding: 46px;
+    height: 88vh;
+    overflow-y: scroll;
+    background: #f5f5f5;
+}
+.k-drawer-item.k-state-selected {
+    color: #3f51b5;
+    background-color: #fff;
+}
+.k-drawer-item.k-state-selected:hover {
+    color: #3f51b5;
+    background-color: #fff;
+}
+.k-widget.k-drawer.k-drawer-start {
+    border-right: 1px solid #f5f5f5;
+}
+.logout-btn {
+    margin: 10px;
+    position: absolute;
+    left: 50px;
+    bottom: 20px;
+    z-index: 3000;
+}

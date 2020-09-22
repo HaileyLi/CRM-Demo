@@ -1,0 +1,225 @@
+.tasks-container {
+    width: 500px;
+    padding: 15px;
+    margin-right:20px;
+    background: #f5f5f5;
+    border-radius: 10px;
+
+    -webkit-box-shadow: 0 3px 10px 1px #ccc;
+    -moz-box-shadow: 0 3px 10px 1px #ccc;
+         box-shadow: 0 3px 10px 1px #ccc;
+}
+
+.card-container{
+    background: #fff;
+    margin: 10px;
+    border: 1px solid #efefef;
+    padding:20px;
+    border-radius:10px;
+}
+
+h2{
+    margin:0;
+}
+
+.card-container
+{
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 0px rgba(0, 0, 0, 0.1) inset;
+}
+
+.card-container:hover
+{
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 12px rgba(0, 0, 0, 0.1) inset;
+}
+
+.tasks-container .k-button.add-btn {
+    background: #3f50b5;
+    color: white;
+    margin: 10px;
+    float: right;
+    margin-top: -57px;
+}
+
+.priority-bar{
+    width: 50px;
+    height: 5px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.high-priority{
+    background: #d60000;
+}
+
+.medium-priority{
+    background: #ffcf83;
+}
+
+.low-priority{
+    background: #ffc000;
+}
+
+span.k-widget.k-dropdown.k-header.task-status-edit {
+    width: 110px;
+    float: right;
+    margin-top: -26px;
+    margin-right: 0px;
+}
+
+
+.task-status {
+    width: 70px;
+    float: right;
+    margin-top: -19px;
+    margin-right: 0px;
+    padding: 5px;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    border-bottom: none;
+    color: white;
+    text-align: center;
+}
+
+.inprogress{
+    background: #3f50b5;
+}
+.notstart{
+    background: #ccc;
+}
+.finished{
+    background: #008400;
+}
+
+.task-filter {
+    margin: 10px;
+    border: 4px solid rgb(169, 195, 251);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+.task-filter > span{
+    color:#000;
+    display:block;
+    margin-bottom:10px;
+}
+.task-filter > div  > span{
+margin:10px;
+}
+.detail{
+    color: #949494;
+}
+
+.start-date span {
+    display: block;
+}
+
+.start-date span:first-child {
+    font-size:10px;
+}
+.start-date{
+    text-align: left;
+    width:100px;
+    display:inline-block;
+}
+
+.end-date span {
+    display: block;
+}
+
+.end-date span:first-child {
+    font-size:10px;
+}
+.end-date{
+    text-align: right;
+    width:100px;
+    float: right;
+}
+
+.progress-line {
+    width: 100%;
+    border-top: 1px solid #ccc;
+    margin-bottom: 10px;
+    margin-top: 51px;
+}
+.start-dot{
+    height: 9px;
+    width: 9px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin-top: -5px;
+}
+
+.end-dot{
+    height: 9px;
+    width: 9px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin-top: -9px;
+    float:right;
+}
+
+.today-dot{
+    height: 9px;
+    width: 9px;
+    background-color: green;
+    border-radius: 50%;
+    margin-top: -9px;
+}
+.today-text{
+    font-size: 10px;
+    margin-top: -25px;
+    display:block;
+    margin-left: -6px;
+}
+.today-container{
+    position:relative;
+    display:block;
+}
+.edit-task {
+    position: absolute;
+    z-index: 2;
+    left: 40%;
+    bottom: 15px;
+}
+.high-priority:after{
+    content: "高优先级";
+    color: #d60101;
+    font-size: 10px;
+    position: absolute;
+    left: 91px;
+    margin-top: -6px;
+}
+.low-priority:after{
+    content: "低优先级";
+    color: #ffc000;
+    font-size: 10px;
+    position: absolute;
+    left: 91px;
+    margin-top: -6px;
+}
+
+span.k-widget.k-dropdown.k-header.dropdown-filter {
+    width: 150px;
+    margin: 0;
+    margin-left: 20px;
+}
+div.thin-modal div.k-widget.k-window.k-dialog {
+    width: 500px;
+}
+div.thin-modal span.k-textbox-container {
+    width: 100%;
+    margin-bottom: 10px;
+}
+span.priority-span {
+    display: block;
+    background: #f7f7f7;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+span.priority-span span.k-widget.k-dropdown.k-header {
+    width: 80px;
+    margin-left: 20px;
+}

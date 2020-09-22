@@ -1,0 +1,67 @@
+.dashboard{
+    display:flex;
+}
+.top_banner h1{
+color:white;
+margin-top: 55px;
+display: inline-block;
+margin-left: 80px;
+margin-bottom:10px;
+}
+.top_banner p{
+    color:white;
+    margin:0;
+    margin-left:80px;
+    width:300px;
+    line-height: 1.2;
+    }
+
+    .setting-container {
+        position: absolute;
+        right: 60px;
+        top: 50px;
+        height: 60px;
+        
+    }
+    .notification-btn {
+        width: 140px;
+        height: 60px;
+        margin: 10px;
+        z-index:3000;
+    }
+    .popup-content {
+        padding: 30px;
+        color: #787878;
+        background-color: #fcf7f8;
+        border: 1px solid rgba(0,0,0,.05);
+        z-index:3000;
+      }
+      .notify-popup {
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        position: absolute;
+        right: 10px;
+        width: 300px;
+
+        -webkit-box-shadow: 0 3px 10px 1px #ccc;
+        -moz-box-shadow: 0 3px 10px 1px #ccc;
+             box-shadow: 0 3px 10px 1px #ccc;
+             z-index:3000;
+    }
+    button.k-button.k-button-icontext.notification-btn.with-dot span.k-icon:after {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ff4081;
+        left: -15px;
+        top: -11px;
+    }
+    .tasks-container{
+        min-width:420px;
+    }
+    .plan-container{
+        min-width:537px;
+    }

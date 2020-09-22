@@ -1,0 +1,12 @@
+tr.k-group-footer {
+    display: none;
+}
+
+tr.k-master-row {
+    cursor: pointer;
+}
+.text-right {
+   position:absolute;
+   top:0;
+   right:24px;
+}
