@@ -53,8 +53,8 @@ class Setting extends React.Component {
 
                 {this.state.show ?
                     <div className="notify-popup">您当前有{this.state.awaitTasks.length}个任务即将到截止日期:<br />
-                        {this.state.awaitTasks.map((item, i) =>
-                            <div key={"key" + i}>{item.title}</div>
+                        {this.state.awaitTasks.map(item =>
+                            <div>{item.title}</div>
                         )}
                     </div> : null}
 

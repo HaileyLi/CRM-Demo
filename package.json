@@ -26,14 +26,22 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "classnames": "^2.2.6",
+    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "hellosign-embedded": "^2.8.0",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^2.2.0",
     "mongodb": "^3.6.0",
-    "mongoose": "^5.8.10",
+    "mongoose": "^5.10.2",
     "node-forge": "^0.9.1",
     "node-signpdf": "^1.2.3",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
@@ -43,7 +51,8 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
-    "uuidv4": "^6.2.3"
+    "uuidv4": "^6.2.3",
+    "validator": "^13.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -68,5 +77,8 @@
   },
   "author": "haileyli",
   "main": "server.js",
-  "proxy": "http://localhost:8080/"
+  "proxy": "http://localhost:8080",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }

@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { HashRouter, Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from "react-router-dom";
 import '@progress/kendo-theme-material/dist/all.css';
 import DrawerRouterContainer from './components/DrawerRouterContainer/DrawerRouterContainer.jsx'
 import Dashboard from './components/Dashboard/Dashboard.jsx';
@@ -12,7 +13,32 @@ import { doFetchTasks, doSaveTasks, doFetchUsers, doFetchPlans, doSavePlans, doF
 import { connect } from 'react-redux';
 import Login from './components/Login/Login';
 import axios from 'axios'
+import { Provider } from "react-redux";
+import store from "./store/store";
 
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./store/setAuthToken";
+import { setCurrentUser, logoutUser } from "./store/authActions";
+import PrivateRoute from "./components/Login/PrivateRoute";
+import Success from './components/Login/Success';
+
+if (localStorage.jwtToken) {
+  // Set auth token header auth
+  const token = localStorage.jwtToken;
+  setAuthToken(token);
+  // Decode token and get user info and exp
+  const decoded = jwt_decode(token);
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+  // Check for expired token
+  const currentTime = Date.now() / 1000; // to get in milliseconds
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logoutUser());
+    // Redirect to login
+    window.location.href = "./login";
+  }
+}
 
 
 class App extends React.Component {
@@ -26,10 +52,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getUsers()
-      .then(data => {
-        this.props.fetchUsers(data)
-      })
+    // this.getUsers()
+    //   .then(data => {
+    //     this.props.fetchUsers(data)
+    //   })
     this.getTasks()
       .then(data => {
         this.props.fetchTasks(data)
@@ -110,59 +136,45 @@ class App extends React.Component {
     })
   }
 
+
   render() {
     return (
-      <div>
-        <Router>
-          <Route path="/login" component={(history) =>
-            <Login
-              handleLogin={username => this.handleLogin(username)}
-              userinfo={this.props.users}
-              {...history}
-            />} />
-          <Route path="/dashboard" render={() => {
-            return (
-              <div>
-                <h2>front menu</h2>
-                <Link to="/customer">help</Link>
-                <Link to="/add-customer">about</Link>
-              </div>
-            );
-          }} />
-          {/* <DrawerRouterContainer
-            handleLogout={this.handleLogout}
-          > */}
-          <Route exact={true} path="/dashboard"
-            component={(history) =>
-              <Dashboard
-                savePlans={this.props.savePlans}
-                saveTasks={this.props.saveTasks}
-                tasks={this.props.tasks}
-                plans={this.props.plans}
-                user={this.props.users[0].username}
-                {...history} />}
-          />
-          <Route exact={true} path="/customer"
-            component={(history) =>
-              <CustomerList
-                saveCustomers={this.props.saveCustomers}
-                customers={this.props.customers}
-                user={this.props.users[0].username}
-                {...history} />}
-          />
-          <Route exact={true} path={`/add-customer`} component={(history) =>
-            <Customer
-              saveCustomers={this.props.saveCustomers}
-              customers={this.props.customers}
-              user={this.props.users[0].username}
-              action={"add"}
-              {...history} />}
-          />
-          {/* </DrawerRouterContainer> */}
-
-
-        </Router>
-      </div>
+      <Provider store={store}>
+        <div className="App">
+          <Router>
+            <Route exact path="/login" component={Login} />
+            <Switch>
+              <PrivateRoute exact path="/dashboard"
+                component={({ match: { url } }) => (
+                  <DrawerRouterContainer
+                    handleLogout={this.handleLogout}
+                    location={{ match: { url } }}>
+                    <Switch>
+                      <Route exact={true} path={`${url}/`} component={() =>
+                        <Dashboard
+                          savePlans={this.props.savePlans}
+                          saveTasks={this.props.saveTasks}
+                          tasks={this.props.tasks}
+                          plans={this.props.plans} />}
+                      />
+                      <Route exact={true} path={`${url}/customer`} component={() =>
+                        <CustomerList
+                          saveCustomers={this.props.saveCustomers}
+                          customers={this.props.customers} />}
+                      />
+                      <Route exact={true} path={`${url}/add`} component={() =>
+                        <Customer
+                          saveCustomers={this.props.saveCustomers}
+                          customers={this.props.customers}
+                          action={"add"} />}
+                      />
+                    </Switch>
+                  </DrawerRouterContainer>
+                )} />
+            </Switch>
+          </Router>
+        </div>
+      </Provider>
     );
   }
 

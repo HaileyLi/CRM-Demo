@@ -37,3 +37,6 @@ display:block;
 button.k-button.k-primary.login-btn {
     width: 200px;
 }
+.red-text{
+    color:red;
+}
